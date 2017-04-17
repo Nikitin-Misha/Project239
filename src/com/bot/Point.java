@@ -18,4 +18,7 @@ public class Point extends JPanel {
         g.fillRect(0,0,3,3);
         g.setColor(Color.red);
     }
+    static double Distanse(Point a,Point b){
+        return Math.sqrt((a.getX()-b.x)*(a.getX()-b.x)+(a.getY()-b.y)*(a.getY()-b.y));
+    }
 }

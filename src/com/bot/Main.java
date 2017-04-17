@@ -96,8 +96,56 @@ public class Main {
                 }
             }
         });
+        final JLabel answerL = new JLabel("Ответ:");
+        answerL.setBounds(2,550,300,25);
+        butPanel.add(answerL);
+
         button2.setBounds(2,150,160,40);
         butPanel.add(button2);
+
+        JButton button3 = new JButton("Найти max расстояние");
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double max = 0;
+                    for(int i=2;i<points.size()-1;i++){
+                        for(int j=i+1;i<points.size();i++){//просчитываем всевозможные вариации с точками
+                            double d = Point.Distanse(points.get(i),points.get(j));
+                            if(max<d){
+                                max=d;//если нашли больше, то новый max
+                            }
+                        }
+                    }
+                    //System.out.println(max);//вывод max
+                    answerL.setText("Ответ: "+max);
+
+                }
+            }
+
+        );
+        button3.setBounds(2,500,200,40);
+        butPanel.add(button3);
+
+        JButton button4 = new JButton("Загрузить из файла");
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
+        button4.setBounds(2,300,200,40);
+        butPanel.add(button4);
+
+        JButton button5 = new JButton("Загрузить в файл");
+        button5.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
+        button5.setBounds(2,350,200,40);
+        butPanel.add(button5);
+
         panel.add(pointpane,BorderLayout.CENTER);
         panel.add(butPanel,BorderLayout.EAST);
         frame.getContentPane().add(panel);
@@ -105,6 +153,7 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
 
 
     public static void main(String[] args) {
