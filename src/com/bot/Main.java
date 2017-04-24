@@ -49,7 +49,7 @@ public class Main {
 
 
 
-        JButton button1 = new JButton("Добавить точку");
+        JButton button1 = new JButton("Добавить точку(и)");
         button1.setBounds(2,100,160,40);
         butPanel.add(button1);
         button1.addActionListener(new ActionListener(){
@@ -103,20 +103,31 @@ public class Main {
         button2.setBounds(2,150,160,40);
         butPanel.add(button2);
 
+
         JButton button3 = new JButton("Найти max расстояние");
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double max = 0;
+                int MaxX = 0;
+                int MaxY = 0;
                     for(int i=2;i<points.size()-1;i++){
                         for(int j=i+1;i<points.size();i++){//просчитываем всевозможные вариации с точками
                             double d = Point.Distanse(points.get(i),points.get(j));
                             if(max<d){
                                 max=d;//если нашли больше, то новый max
+                                MaxX = i;
+                                MaxY = j;
                             }
                         }
                     }
                     //System.out.println(max);//вывод max
+
+                    Line l = new Line(MaxX, MaxY);
+                    l.setBounds(1000,1000,4,4);
+                    pointpane.add(l);
+                    pointpane.revalidate();
+                    pointpane.repaint();
                     answerL.setText("Ответ: "+max);
 
                 }
